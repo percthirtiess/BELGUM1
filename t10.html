@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lovable App</title>
+    <meta name="description" content="Lovable Generated Project">
+    <meta name="author" content="Lovable">
+    <meta property="og:type" content="website">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --background: 0 0% 96%;
+        --foreground: 222 47% 11%;
+        --card: 0 0% 100%;
+        --card-foreground: 222 47% 11%;
+        --primary: 142 71% 45%;
+        --primary-foreground: 0 0% 100%;
+        --muted: 210 40% 93%;
+        --muted-foreground: 215 16% 47%;
+        --border: 214 32% 91%;
+        --radius: 0.5rem;
+      }
+      body {
+        background-color: hsl(var(--background));
+        color: hsl(var(--foreground));
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        min-height: 100vh;
+        margin: 0;
+      }
+      .bg-background { background-color: hsl(var(--background)); }
+      .bg-card { background-color: hsl(var(--card)); }
+      .bg-primary { background-color: hsl(var(--primary)); }
+      .bg-muted { background-color: hsl(var(--muted)); }
+      .text-foreground { color: hsl(var(--foreground)); }
+      .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+      .text-primary-foreground { color: hsl(var(--primary-foreground)); }
+      .border-border { border-color: hsl(var(--border)); }
+
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+      .animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+      @keyframes progress-fill {
+        from { width: 0%; }
+        to { width: 77%; }
+      }
+      .progress-bar-animated {
+        animation: progress-fill 1.5s ease-out forwards;
+        background-color: hsl(var(--primary));
+      }
+
+      .hover\:bg-primary\/90:hover { background-color: hsl(142 71% 45% / 0.9); }
+      .hover\:text-foreground:hover { color: hsl(var(--foreground)); }
+
+      .shadow-lg {
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      }
+      .shadow-md {
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      }
+      .rounded-2xl { border-radius: 1rem; }
+      .rounded-full { border-radius: 9999px; }
+      .rounded-lg { border-radius: 0.5rem; }
+
+      button { cursor: pointer; border: none; }
+
+      /* Floating notification pill - exactly like original */
+      #earning-pill {
+        position: fixed;
+        top: 12px;
+        left: 50%;
+        transform: translateX(-50%) translateY(0px);
+        z-index: 50;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        background: white;
+        border: 1px solid hsl(var(--border));
+        border-radius: 9999px;
+        padding: 4px 12px;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        font-size: 12px;
+        white-space: nowrap;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      #earning-pill.fade-out {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-6px);
+      }
+      #earning-pill.fade-in {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0px);
+      }
+    </style>
+</head>
+<body class="bg-background">
+
+  <!-- Floating earning notification pill (rotates through real people like original) -->
+  <div id="earning-pill" class="fade-in">
+    <span id="pill-name" style="font-weight:700;color:hsl(var(--foreground));"></span>
+    <span style="color:hsl(var(--muted-foreground));">Earned</span>
+    <span id="pill-amount" style="font-weight:700;color:#22c55e;"></span>
+    <span style="color:hsl(var(--muted-foreground));">Playing Games</span>
+  </div>
+
+  <!-- Main content -->
+  <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px;">
+    <div style="width:100%;max-width:420px;display:flex;flex-direction:column;gap:16px;">
+
+      <!-- App info card -->
+      <div class="bg-card rounded-2xl shadow-lg" style="padding:20px 24px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;">
+        <img src="data:image/png;base64,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" alt="TesterUp Logo" style="width:56px;height:56px;border-radius:12px;object-fit:cover;box-shadow:0 2px 8px rgba(0,0,0,0.15);">
+        <p class="text-foreground" style="font-weight:700;font-size:18px;margin:0;">Get paid to play Block Blast!</p>
+        <p class="text-muted-foreground" style="font-size:12px;margin:0;">As Seen On TikTok</p>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="animate-pulse" style="width:8px;height:8px;border-radius:50%;background-color:hsl(var(--primary));display:inline-block;"></span>
+          <span id="live-counter" class="text-foreground" style="font-weight:600;font-size:14px;">25,017</span>
+          <span class="text-muted-foreground" style="font-size:12px;">online</span>
+        </div>
+      </div>
+
+      <!-- Main card -->
+      <div class="bg-card rounded-2xl shadow-lg" style="padding:24px 28px;">
+        <div style="display:flex;flex-direction:column;gap:24px;">
+
+          <!-- Progress bar -->
+          <div>
+            <p style="font-size:13px;font-weight:600;text-align:center;margin:0 0 6px 0;color:rgb(62,112,218);">Reward Progress</p>
+            <div style="width:100%;height:8px;background-color:hsl(var(--muted));border-radius:9999px;overflow:hidden;">
+              <div class="progress-bar-animated" style="height:100%;border-radius:9999px;"></div>
+            </div>
+          </div>
+
+          <!-- Heading -->
+          <div style="text-align:center;">
+            <h1 class="text-foreground" style="font-size:24px;font-weight:700;margin:0 0 6px 0;line-height:1.2;">Almost there!</h1>
+            <p class="text-muted-foreground" style="font-size:14px;margin:0;">Just a few more steps to start earning</p>
+          </div>
+
+          <!-- CTA Button -->
+          <a href="https://gettesterapp.com/glYBSLw" target="_blank" rel="noopener noreferrer" style="display:block;text-decoration:none;">
+            <button class="bg-primary hover:bg-primary/90 text-primary-foreground" style="width:100%;font-weight:700;font-size:14px;padding:12px 0;border-radius:9999px;letter-spacing:0.08em;text-transform:uppercase;transition:background-color 0.2s;">
+              START EARNING NOW
+            </button>
+          </a>
+
+          <!-- Quick Start Guide -->
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <h2 class="text-foreground" style="font-size:15px;font-weight:600;margin:0;display:flex;align-items:center;gap:4px;">
+              Quick Start Guide <span>&#8594;</span>
+            </h2>
+
+            <!-- Step 1 -->
+            <div style="display:flex;align-items:flex-start;gap:12px;">
+              <div class="bg-primary" style="flex-shrink:0;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:2px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+              </div>
+              <div>
+                <p class="text-foreground" style="font-weight:600;font-size:14px;margin:0 0 2px 0;">Download the TesterUp app</p>
+                <p class="text-muted-foreground" style="font-size:13px;font-weight:500;margin:0;">Click the "Get" button above</p>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div style="display:flex;align-items:flex-start;gap:12px;">
+              <div class="bg-primary" style="flex-shrink:0;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:2px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+              </div>
+              <div>
+                <p class="text-foreground" style="font-weight:600;font-size:14px;margin:0 0 2px 0;">Earn More by Testing Multiple Games</p>
+                <p class="text-muted-foreground" style="font-size:13px;font-weight:500;margin:0;">Make over $500/Day</p>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div style="display:flex;align-items:flex-start;gap:12px;">
+              <div class="bg-primary" style="flex-shrink:0;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:2px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+              </div>
+              <div>
+                <p class="text-foreground" style="font-weight:600;font-size:14px;margin:0 0 2px 0;">Pro tip: Make in-app purchases on the games to earn faster</p>
+                <p class="text-muted-foreground" style="font-size:13px;font-weight:500;margin:0;">They reimburse you for anything you spend!</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Secure & Confidential -->
+          <div class="text-muted-foreground" style="display:flex;align-items:center;justify-content:center;gap:8px;padding-top:8px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+            <span style="font-size:14px;">Secure &amp; Confidential</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer style="margin-top:8px;text-align:center;padding-bottom:24px;display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:16px;font-size:14px;">
+          <a href="#" class="text-muted-foreground hover:text-foreground" style="text-decoration:none;transition:color 0.2s;">Terms of Service</a>
+        </div>
+        <p class="text-muted-foreground" style="font-size:14px;margin:0;">&#169; 2025. All rights reserved.</p>
+      </footer>
+
+    </div>
+  </div>
+
+<script>
+  // ── Exact data from original site ──
+  var earners = [
+    {name:"Sarah K",  amount:"$523.44"},
+    {name:"Alex D",   amount:"$312.80"},
+    {name:"Jamie L",  amount:"$748.20"},
+    {name:"Chris M",  amount:"$195.60"},
+    {name:"Taylor R", amount:"$634.15"},
+    {name:"Jordan B", amount:"$421.90"},
+    {name:"Morgan S", amount:"$867.35"},
+    {name:"Casey W",  amount:"$289.70"},
+    {name:"Riley P",  amount:"$556.25"},
+    {name:"Daniel H", amount:"$956.23"}
+  ];
+
+  // ── Rotating earning pill (changes every 5s with fade, exactly like original) ──
+  var pillIndex = 0;
+  var pill      = document.getElementById('earning-pill');
+  var pillName  = document.getElementById('pill-name');
+  var pillAmt   = document.getElementById('pill-amount');
+
+  function showEarner(idx) {
+    pillName.textContent = earners[idx].name;
+    pillAmt.textContent  = earners[idx].amount;
+  }
+
+  // Show first earner immediately
+  showEarner(0);
+
+  setInterval(function() {
+    // Fade out
+    pill.classList.remove('fade-in');
+    pill.classList.add('fade-out');
+    setTimeout(function() {
+      pillIndex = (pillIndex + 1) % earners.length;
+      showEarner(pillIndex);
+      // Fade in
+      pill.classList.remove('fade-out');
+      pill.classList.add('fade-in');
+    }, 400);
+  }, 5000);
+
+  // ── Live counter (exact logic from original: every 1s, random ±5 to ±50) ──
+  var count = 25017;
+  var counterEl = document.getElementById('live-counter');
+
+  function formatNum(n) {
+    return n.toLocaleString('en-US');
+  }
+
+  counterEl.textContent = formatNum(count);
+
+  setInterval(function() {
+    var change = Math.floor(Math.random() * 46) + 5; // 5–50
+    count = count + (Math.random() > 0.5 ? change : -change);
+    // Keep in realistic range
+    if (count < 24500) count = 24500 + Math.floor(Math.random() * 100);
+    if (count > 26000) count = 26000 - Math.floor(Math.random() * 100);
+    counterEl.textContent = formatNum(count);
+  }, 1000);
+</script>
+</body>
+</html>
