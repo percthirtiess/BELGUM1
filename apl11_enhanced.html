@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apple Cash Program</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @keyframes softGlow {
+      0%   { box-shadow: 0 0 22px 6px rgba(230,230,230,0.40), 0 0 55px 14px rgba(200,200,200,0.18), 0 4px 20px rgba(0,0,0,0.5); }
+      50%  { box-shadow: 0 0 38px 12px rgba(230,230,230,0.65), 0 0 80px 24px rgba(200,200,200,0.30), 0 4px 20px rgba(0,0,0,0.5); }
+      100% { box-shadow: 0 0 22px 6px rgba(230,230,230,0.40), 0 0 55px 14px rgba(200,200,200,0.18), 0 4px 20px rgba(0,0,0,0.5); }
+    }
+
+    @keyframes ripple {
+      0%   { transform: scale(1);   opacity: 0.5; }
+      100% { transform: scale(2.0); opacity: 0; }
+    }
+
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position:  200% center; }
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.25; }
+    }
+
+    @keyframes countFlip {
+      0%   { opacity: 1; transform: translateY(0); }
+      40%  { opacity: 0; transform: translateY(-5px); }
+      60%  { opacity: 0; transform: translateY(5px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    body {
+      background-color: #080808;
+      color: #e6e6e6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 16px;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: linear-gradient(160deg, #141414 0%, #0c0c0c 100%);
+      border: 1px solid #272727;
+      border-radius: 22px;
+      width: 100%;
+      max-width: 360px;
+      padding: 32px 26px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: fadeSlideUp 0.5s ease both;
+      position: relative;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 12%; right: 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.10), transparent);
+    }
+
+    /* ── Icon ── */
+    .icon-box {
+      width: 66px;
+      height: 66px;
+      background: linear-gradient(145deg, #242424, #191919);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.65), 0 4px 14px rgba(0,0,0,0.5);
+    }
+
+    .icon-box svg { width: 32px; height: 32px; fill: #e6e6e6; }
+
+    /* ── Label ── */
+    .label {
+      font-size: 10px;
+      letter-spacing: 0.30em;
+      text-transform: uppercase;
+      color: #555;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    /* ── Stars ── */
+    .stars { display: flex; gap: 3px; justify-content: center; margin-bottom: 5px; }
+    .stars svg { width: 15px; height: 15px; fill: #d0d0d0; }
+
+    .review-text { font-size: 12px; color: #606060; margin-bottom: 16px; }
+    .review-text strong { color: #e0e0e0; font-weight: 600; }
+
+    /* ── Headline ── */
+    h1 {
+      font-size: 23px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #ffffff 30%, #909090 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Description ── */
+    .desc {
+      font-size: 13px;
+      color: #707070;
+      line-height: 1.85;
+      margin-bottom: 22px;
+    }
+
+    /* ── Steps section ── */
+    .steps-label {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #505050;
+      font-weight: 600;
+      margin-bottom: 12px;
+      align-self: flex-start;
+    }
+
+    .steps {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 22px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 14px;
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 0;
+      position: relative;
+      text-align: left;
+    }
+
+    /* rounded corners only on first/last */
+    .step:first-child { border-radius: 12px 12px 0 0; }
+    .step:last-child  { border-radius: 0 0 12px 12px; }
+
+    /* connecting line between steps */
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 27px;
+      bottom: -1px;
+      width: 1px;
+      height: 1px;
+      background: #222;
+    }
+
+    .step:not(:first-child) {
+      border-top: none;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #1e1e1e;
+      border: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #c0c0c0;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-body { flex: 1; }
+
+    .step-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e0e0e0;
+      margin-bottom: 2px;
+    }
+
+    .step-sub {
+      font-size: 11px;
+      color: #606060;
+      line-height: 1.5;
+    }
+
+    .step-badge {
+      display: inline-block;
+      background: #1d1d1d;
+      border: 1px solid #2e2e2e;
+      border-radius: 6px;
+      padding: 2px 7px;
+      font-size: 10px;
+      color: #888;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    /* highlight the key step */
+    .step.highlight {
+      background: #131313;
+      border-color: #2c2c2c;
+    }
+
+    .step.highlight .step-num {
+      background: #252525;
+      border-color: #3a3a3a;
+      color: #e0e0e0;
+    }
+
+    /* ── Live users bar ── */
+    .live-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 10px;
+      padding: 9px 14px;
+      width: 100%;
+      margin-bottom: 18px;
+      font-size: 12px;
+      color: #777;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #c8c8c8;
+      flex-shrink: 0;
+      animation: dotPulse 1.5s ease-in-out infinite;
+    }
+
+    .live-count {
+      font-weight: 700;
+      color: #e0e0e0;
+      font-size: 13px;
+      display: inline-block;
+      min-width: 38px;
+    }
+
+    .live-count.flip {
+      animation: countFlip 0.32s ease both;
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #252525, transparent);
+      margin-bottom: 18px;
+    }
+
+    /* ── CTA Button ── */
+    .btn-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .btn-wrap::before,
+    .btn-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 14px;
+      border: 1.5px solid rgba(230,230,230,0.30);
+      animation: ripple 2.2s ease-out infinite;
+      pointer-events: none;
+    }
+
+    .btn-wrap::after { animation-delay: 1.1s; }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, #f8f8f8 0%, #c8c8c8 100%);
+      color: #0d0d0d;
+      font-size: 15px;
+      font-weight: 500;
+      border: none;
+      border-radius: 13px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      animation: softGlow 2s ease-in-out infinite;
+      transition: transform 0.12s ease, filter 0.15s ease;
+    }
+
+    /* shimmer sweep */
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg,
+        transparent 35%,
+        rgba(255,255,255,0.50) 50%,
+        transparent 65%);
+      background-size: 200% 100%;
+      animation: shimmer 2.2s linear infinite;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+
+    .btn:hover  { filter: brightness(1.06); transform: translateY(-1px); }
+    .btn:active { transform: scale(0.97); }
+
+    /* ── Footer note ── */
+    .footer-note {
+      margin-top: 16px;
+      font-size: 10px;
+      color: #3e3e3e;
+      line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+
+    <!-- Icon -->
+    <div class="icon-box">
+      <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
+        <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+      </svg>
+    </div>
+
+    <!-- Label -->
+    <p class="label">Apple Program</p>
+
+    <!-- Stars -->
+    <div class="stars">
+      <svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+    </div>
+
+    <p class="review-text"><strong>+12,000 reviews</strong> &nbsp;·&nbsp; Rated 4.9 / 5</p>
+
+    <!-- Headline -->
+    <h1>Apple Cash Program</h1>
+
+    <!-- Description -->
+    <p class="desc">
+      Complete a few quick offers from your iPhone<br>
+      and receive your Apple Cash reward instantly.<br>
+      Thousands of people do it every day.
+    </p>
+
+    <!-- How it works steps -->
+    <p class="steps-label">How it works</p>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Enter your info</div>
+          <div class="step-sub">Provide your email and basic details to verify your eligibility.</div>
+        </div>
+      </div>
+
+      <div class="step highlight">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Complete 3–5 offers</div>
+          <div class="step-sub">Try a handful of offers from our partners to unlock your reward.</div>
+          <span class="step-badge">Only 3–5 required</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Deposit to your wallet</div>
+          <div class="step-sub">Your Apple Cash balance is credited directly — no gift cards, no waiting.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Live users -->
+    <div class="live-bar">
+      <span class="live-dot"></span>
+      <span><span class="live-count" id="live-count">847</span> people earning right now</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- CTA -->
+    <div class="btn-wrap">
+      <a class="btn" id="cta-btn" href="#" target="_blank" rel="noopener noreferrer">
+        Start Earning
+      </a>
+    </div>
+
+    <!-- Footer note -->
+    <p class="footer-note">
+      By continuing you agree to the program terms.<br>
+      Available for eligible US iPhone users only.
+    </p>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ★  CHANGE YOUR CTA LINK HERE  ★                             -->
+  <!-- Replace the URL below with your new affiliate link anytime.  -->
+  <!-- ============================================================ -->
+  <script>
+    var CTA_LINK = "https://taptrcks.com/r/eyJ0IjoiYXBwbGUiLCJ1IjoiNjgyMTA2YjQzYmE1MTlmZjA4ZWRkODc2IiwidHMiOjE3NzU5NTUxMTMyMTR9?s2=apl11";
+    // ============================================================
+    document.getElementById('cta-btn').href = CTA_LINK;
+
+    // ── Fluctuating live user count ──────────────────────────────
+    var countEl = document.getElementById('live-count');
+    var current = 8292 + Math.floor(Math.random() * 6);
+
+    function updateCount() {
+      var delta = Math.floor(Math.random() * 4) - 1; // -1 to +2
+      current = Math.max(8292, Math.min(8298, current + delta));
+      countEl.classList.remove('flip');
+      void countEl.offsetWidth;
+      countEl.classList.add('flip');
+      countEl.textContent = current.toLocaleString();
+      setTimeout(updateCount, 2500 + Math.random() * 3000);
+    }
+
+    setTimeout(updateCount, 2000 + Math.random() * 2000);
+  </script>
+</body>
+</html>
