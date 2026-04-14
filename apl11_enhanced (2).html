@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Apple Pay Program</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @keyframes softGlow {
+      0%   { box-shadow: 0 0 22px 6px rgba(230,230,230,0.40), 0 0 55px 14px rgba(200,200,200,0.18); }
+      50%  { box-shadow: 0 0 38px 12px rgba(230,230,230,0.65), 0 0 80px 24px rgba(200,200,200,0.30); }
+      100% { box-shadow: 0 0 22px 6px rgba(230,230,230,0.40), 0 0 55px 14px rgba(200,200,200,0.18); }
+    }
+    @keyframes ripple {
+      0%   { transform: scale(1);   opacity: 0.45; }
+      100% { transform: scale(2.1); opacity: 0; }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position:  200% center; }
+    }
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.2; }
+    }
+    @keyframes countFlip {
+      0%   { opacity: 1; transform: translateY(0); }
+      40%  { opacity: 0; transform: translateY(-5px); }
+      60%  { opacity: 0; transform: translateY(5px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-4px); }
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      background-color: #080808;
+      color: #e6e6e6;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
+
+    /* ── Scrollable content ── */
+    .scroll-area {
+      flex: 1;
+      width: 100%;
+      max-width: 390px;
+      /* Reduced top padding so content sits higher */
+      padding: 16px 20px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeSlideUp 0.45s ease both;
+      overflow-y: auto;
+    }
+
+    /* ── Logo — centered properly ── */
+    .logo-wrap {
+      /* Less bottom margin to tighten layout */
+      margin-bottom: 12px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #111;
+      border: 1px solid #272727;
+      border-radius: 22px;
+      /* Equal horizontal padding so the SVG content is truly centered */
+      padding: 14px 28px;
+      animation: logoFloat 3.8s ease-in-out infinite;
+      filter: drop-shadow(0 6px 24px rgba(255,255,255,0.07));
+    }
+
+    /* Apple Pay SVG wordmark inside box */
+    .logo-box svg {
+      width: 120px;
+      height: auto;
+      display: block;
+      /* Shift the SVG content to visually center the glyph+text combo */
+      overflow: visible;
+    }
+
+    /* ── Stars ── */
+    .stars { display: flex; gap: 3px; justify-content: center; margin-bottom: 4px; margin-top: 10px; }
+    .stars svg { width: 14px; height: 14px; fill: #d0d0d0; }
+
+    .review-text { font-size: 12px; color: #585858; margin-bottom: 12px; }
+    .review-text strong { color: #ddd; font-weight: 600; }
+
+    /* ── Headline ── */
+    h1 {
+      font-size: 23px;
+      font-weight: 700;
+      line-height: 1.25;
+      margin-bottom: 6px;
+      text-align: center;
+      background: linear-gradient(160deg, #ffffff 20%, #888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.3px;
+    }
+
+    .desc {
+      font-size: 13px;
+      color: #686868;
+      line-height: 1.75;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    /* ── Steps ── */
+    .steps-label {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #484848;
+      font-weight: 600;
+      margin-bottom: 9px;
+      align-self: flex-start;
+    }
+
+    .steps {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 12px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 12px;
+      background: #111;
+      border: 1px solid #1f1f1f;
+      text-align: left;
+    }
+
+    .step:first-child { border-radius: 12px 12px 0 0; }
+    .step:last-child  { border-radius: 0 0 12px 12px; }
+    .step:not(:first-child) { border-top: none; }
+
+    .step-num {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: #1c1c1c;
+      border: 1px solid #2c2c2c;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; color: #aaa;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    .step-body { flex: 1; }
+    .step-title { font-size: 13px; font-weight: 600; color: #ddd; margin-bottom: 2px; }
+    .step-sub   { font-size: 11px; color: #585858; line-height: 1.5; }
+
+    .step-badge {
+      display: inline-block;
+      background: #1a1a1a; border: 1px solid #2a2a2a;
+      border-radius: 6px; padding: 2px 7px;
+      font-size: 10px; color: #787878; font-weight: 600; margin-top: 4px;
+    }
+
+    .step.highlight { background: #121212; border-color: #272727; }
+    .step.highlight .step-num { background: #222; border-color: #363636; color: #ddd; }
+
+    /* ── Live bar ── */
+    .live-bar {
+      display: flex; align-items: center; gap: 8px;
+      background: #0e0e0e; border: 1px solid #1e1e1e;
+      border-radius: 10px; padding: 8px 13px;
+      width: 100%; font-size: 12px; color: #686868;
+    }
+
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #c0c0c0; flex-shrink: 0;
+      animation: dotPulse 1.5s ease-in-out infinite;
+    }
+
+    .live-count {
+      font-weight: 700; color: #ddd; font-size: 13px;
+      display: inline-block; min-width: 46px;
+    }
+    .live-count.flip { animation: countFlip 0.32s ease both; }
+
+    /* ── Sticky CTA footer ── */
+    .cta-footer {
+      width: 100%;
+      max-width: 390px;
+      padding: 10px 20px calc(10px + env(safe-area-inset-bottom));
+      background: linear-gradient(to top, #080808 75%, transparent);
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
+    }
+
+    .btn-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .btn-wrap::before,
+    .btn-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 14px;
+      border: 1.5px solid rgba(220,220,220,0.28);
+      animation: ripple 2.2s ease-out infinite;
+      pointer-events: none;
+    }
+    .btn-wrap::after { animation-delay: 1.1s; }
+
+    .btn {
+      display: block; width: 100%;
+      padding: 15px 32px;
+      background: linear-gradient(135deg, #f5f5f5 0%, #c8c8c8 100%);
+      color: #0d0d0d;
+      font-size: 15px; font-weight: 500;
+      border: none; border-radius: 13px;
+      cursor: pointer; text-align: center; text-decoration: none;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      position: relative; z-index: 1; overflow: hidden;
+      animation: softGlow 2s ease-in-out infinite;
+      transition: transform 0.12s ease, filter 0.15s ease;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg,
+        transparent 35%, rgba(255,255,255,0.50) 50%, transparent 65%);
+      background-size: 200% 100%;
+      animation: shimmer 2.2s linear infinite;
+      border-radius: inherit; pointer-events: none;
+    }
+
+    .btn:hover  { filter: brightness(1.06); transform: translateY(-1px); }
+    .btn:active { transform: scale(0.97); }
+
+    .footer-note {
+      font-size: 10px; color: #363636;
+      line-height: 1.6; text-align: center; margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-area">
+
+    <!-- Apple Pay logo — centered SVG wordmark, white on dark -->
+    <div class="logo-wrap">
+      <div class="logo-box">
+        <!--
+          viewBox carefully balanced so the Apple glyph + "Pay" text
+          appear visually centered inside the box.
+          The glyph occupies roughly x=8–52, "Pay" starts at x=60.
+          Total content width ~155px in a 180-wide viewBox → centered.
+        -->
+        <svg viewBox="0 0 180 60" xmlns="http://www.w3.org/2000/svg">
+          <!-- Apple glyph -->
+          <path fill="white" d="M36.4 15.7c1.6-1.9 2.6-4.5 2.3-7.1-2.2.1-4.9 1.5-6.5 3.4-1.4 1.6-2.6 4.3-2.2 6.8 2.5.2 5-1.2 6.4-3.1zm2.5 4c-3.6-.2-6.7 2-8.4 2-1.7 0-4.3-1.9-7.2-1.9-3.7.1-7.1 2.1-9 5.5-3.8 6.6-1 16.5 2.7 21.9 1.8 2.6 4 5.5 6.9 5.4 2.8-.1 3.8-1.8 7.1-1.8 3.3 0 4.2 1.8 7.1 1.7 3-.1 4.8-2.7 6.6-5.3 2.1-3 2.9-5.9 3-6.1-.1 0-5.7-2.2-5.7-8.6-.1-5.4 4.4-8 4.6-8.1-2.5-3.7-6.4-4.1-7.7-3.7z"/>
+          <!-- "Pay" text -->
+          <text x="52" y="42"
+            font-family="-apple-system, BlinkMacSystemFont, SF Pro Display, Helvetica Neue, Arial, sans-serif"
+            font-size="32"
+            font-weight="400"
+            letter-spacing="-0.5"
+            fill="white">Pay</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Stars -->
+    <div class="stars">
+      <svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+    </div>
+
+    <p class="review-text"><strong>+12,000 reviews</strong> &nbsp;·&nbsp; Rated 4.9 / 5</p>
+
+    <h1>Apple Pay Program</h1>
+
+    <p class="desc">
+      Complete a few quick offers from your iPhone<br>
+      and receive your Apple Pay reward instantly.
+    </p>
+
+    <!-- Steps -->
+    <p class="steps-label">How it works</p>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Enter your info</div>
+          <div class="step-sub">Provide your email and basic details to verify your eligibility.</div>
+        </div>
+      </div>
+
+      <div class="step highlight">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Complete 3–5 offers</div>
+          <div class="step-sub">Try a handful of offers from our partners to unlock your reward.</div>
+          <span class="step-badge">Only 3–5 required</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Deposit to Apple Pay</div>
+          <div class="step-sub">Your reward is sent directly to your Apple Pay balance — instant, no gift cards.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Live users -->
+    <div class="live-bar">
+      <span class="live-dot"></span>
+      <span><span class="live-count" id="live-count">8,294</span> people earning right now</span>
+    </div>
+
+  </div><!-- /scroll-area -->
+
+  <!-- Sticky CTA — always visible without scrolling -->
+  <div class="cta-footer">
+    <div class="btn-wrap">
+      <a class="btn" id="cta-btn" href="#" target="_blank" rel="noopener noreferrer">
+        Start Earning
+      </a>
+    </div>
+    <p class="footer-note">Available for eligible US iPhone users only.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ★  CHANGE YOUR CTA LINK HERE  ★                             -->
+  <!-- Replace the URL below with your new affiliate link anytime.  -->
+  <!-- ============================================================ -->
+  <script>
+    var CTA_LINK = "https://taptrcks.com/r/eyJ0IjoiYXBwbGUiLCJ1IjoiNjgyMTA2YjQzYmE1MTlmZjA4ZWRkODc2IiwidHMiOjE3NzU5NTUxMTMyMTR9?s2=apl11";
+    // ============================================================
+    document.getElementById('cta-btn').href = CTA_LINK;
+
+    // ── Fluctuating live user count ──────────────────────────────
+    // Starts high (8292–8310), alternates every ~2s with wider swings
+    var countEl = document.getElementById('live-count');
+    var MIN = 8290, MAX = 8312;
+    var current = 8292 + Math.floor(Math.random() * 10);
+    countEl.textContent = current.toLocaleString();
+
+    function updateCount() {
+      // Swing ±1 to ±4 each tick so it feels alive
+      var delta = Math.floor(Math.random() * 9) - 3; // -3 to +5 (slight upward bias)
+      current = Math.max(MIN, Math.min(MAX, current + delta));
+
+      countEl.classList.remove('flip');
+      void countEl.offsetWidth; // force reflow to restart animation
+      countEl.classList.add('flip');
+      countEl.textContent = current.toLocaleString();
+
+      // Alternate every 1.8–2.4 seconds as requested
+      setTimeout(updateCount, 1800 + Math.random() * 600);
+    }
+
+    // First update after 1.5–2.5s
+    setTimeout(updateCount, 1500 + Math.random() * 1000);
+  </script>
+</body>
+</html>
