@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Paid To Play Games - Earn Money Playing Mobile Games</title>
+  <meta name="description" content="Get paid for playing mobile games. Turn your screen time into real cash rewards with TesterUp.">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES & THEME
+    ============================================================ */
+    :root {
+      --background: hsl(0, 0%, 4%);
+      --foreground: hsl(0, 0%, 98%);
+      --card: hsl(0, 0%, 7%);
+      --card-foreground: hsl(0, 0%, 98%);
+      --primary: hsl(0, 85%, 50%);
+      --primary-foreground: hsl(0, 0%, 100%);
+      --secondary: hsl(0, 0%, 12%);
+      --muted: hsl(0, 0%, 15%);
+      --muted-foreground: hsl(0, 0%, 64%);
+      --border: hsl(0, 0%, 18%);
+      --radius: 1rem;
+      --glow-primary: 0 0 40px hsla(0, 85%, 50%, 0.35);
+      --glow-primary-strong: 0 0 60px hsla(0, 85%, 50%, 0.55);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+
+    body {
+      background-color: var(--background);
+      color: var(--foreground);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    button {
+      cursor: pointer;
+      font-family: inherit;
+      border: none;
+      outline: none;
+    }
+
+    /* ============================================================
+       UTILITY CLASSES
+    ============================================================ */
+    .glass {
+      background: rgba(20, 20, 20, 0.70);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .glass-strong {
+      background: rgba(26, 26, 26, 0.85);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .box-glow-strong {
+      box-shadow: var(--glow-primary-strong);
+    }
+
+    .text-glow {
+      text-shadow: rgba(236, 19, 19, 0.5) 0px 0px 20px, rgba(236, 19, 19, 0.3) 0px 0px 40px;
+    }
+
+    /* ============================================================
+       PARTICLE BACKGROUND
+    ============================================================ */
+    #particle-bg {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #particle-bg .gradient-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, hsla(0, 85%, 50%, 0.05) 0%, transparent 100%);
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: hsla(0, 85%, 50%, 0.30);
+      animation: float-particle linear infinite;
+    }
+
+    @keyframes float-particle {
+      0%   { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
+      50%  { opacity: 0.3; }
+      100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ============================================================
+       LAYOUT
+    ============================================================ */
+    .page-wrapper {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      z-index: 1;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    /* ============================================================
+       LOGO / BRAND
+    ============================================================ */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .brand-icon {
+      width: 28px;
+      height: 28px;
+      color: var(--primary);
+    }
+
+    .brand-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--foreground);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-name span {
+      color: var(--primary);
+    }
+
+    /* ============================================================
+       HEADLINE
+    ============================================================ */
+    .headline {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .headline h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--foreground);
+    }
+
+    .headline h1 .highlight {
+      color: var(--primary);
+      font-style: italic;
+    }
+
+    .headline .subtitle {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      margin-top: 6px;
+    }
+
+    /* ============================================================
+       BONUS BADGE
+    ============================================================ */
+    .bonus-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: hsla(0, 85%, 50%, 0.12);
+      border: 1px solid hsla(0, 85%, 50%, 0.30);
+      border-radius: 999px;
+      padding: 5px 12px;
+      margin-bottom: 8px;
+    }
+
+    .bonus-badge svg {
+      width: 14px;
+      height: 14px;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    .bonus-badge span {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .games-line {
+      font-size: 0.75rem;
+      color: var(--muted-foreground);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    /* ============================================================
+       CTA BUTTON
+    ============================================================ */
+    .cta-btn {
+      width: 100%;
+      background: var(--primary);
+      color: var(--primary-foreground);
+      font-weight: 700;
+      font-size: 1.125rem;
+      padding: 14px 20px;
+      border-radius: 0.75rem;
+      box-shadow: var(--glow-primary-strong);
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      margin-bottom: 12px;
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    .cta-btn:hover {
+      background: hsl(0, 85%, 44%);
+    }
+
+    .cta-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* ============================================================
+       TRUST BADGES
+    ============================================================ */
+    .trust-badges {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      font-size: 0.75rem;
+      color: var(--muted-foreground);
+      margin-bottom: 16px;
+    }
+
+    /* ============================================================
+       FEATURE GRID
+    ============================================================ */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+      margin-bottom: 16px;
+    }
+
+    .feature-card {
+      border-radius: 0.75rem;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 6px;
+    }
+
+    .feature-icon-wrap {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: hsla(0, 85%, 50%, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature-icon-wrap svg {
+      width: 16px;
+      height: 16px;
+      color: var(--primary);
+    }
+
+    .feature-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--foreground);
+    }
+
+    .feature-desc {
+      font-size: 0.625rem;
+      color: var(--muted-foreground);
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       IMPORTANT NOTE
+    ============================================================ */
+    .important-note {
+      width: 100%;
+      border-radius: 0.75rem;
+      padding: 12px;
+      border: 1px solid hsla(0, 85%, 50%, 0.20);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .important-note p {
+      font-size: 0.75rem;
+      color: var(--muted-foreground);
+    }
+
+    .important-note .label {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* ============================================================
+       STATS BAR
+    ============================================================ */
+    .stats-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      font-size: 0.75rem;
+      color: var(--muted-foreground);
+    }
+
+    .stats-bar .dot {
+      color: var(--muted-foreground);
+    }
+
+    /* ============================================================
+       ANIMATIONS
+    ============================================================ */
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-in {
+      animation: fade-up 0.5s ease forwards;
+      opacity: 0;
+    }
+
+    .delay-1 { animation-delay: 0.05s; }
+    .delay-2 { animation-delay: 0.10s; }
+    .delay-3 { animation-delay: 0.15s; }
+    .delay-4 { animation-delay: 0.20s; }
+    .delay-5 { animation-delay: 0.25s; }
+    .delay-6 { animation-delay: 0.30s; }
+    .delay-7 { animation-delay: 0.35s; }
+  </style>
+
+  <!-- ============================================================ -->
+  <!-- META PIXEL  |  Pixel ID: 2133166377443921                   -->
+  <!-- ============================================================ -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2133166377443921');
+  fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=2133166377443921&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
+  <!-- ============================================================ -->
+  <!-- CLICKFLARE LANDER TRACKING SCRIPT                          -->
+  <!-- Campaign ID: 69dfdd0c15a3b200126d10c1                      -->
+  <!-- ============================================================ -->
+  <script>!function(){"use strict";var t="lp_ref",n="cpid",e="lpurl",c="https://track.gamerewrds.com",r="(?<domain>http(?:s?)://[^/]*)".concat("/cf/click"),a="(?:(?:/(?<cta>[1-9][0-9]*)/?)|(?:/))?",i="^".concat(r).concat(a).concat("(?:$|(\\?.*))"),o='javascript:window.clickflare.l="(?<original_link>'.concat(r).concat(a,'("|(\\?[^"]*"))).*'),s=function(){return new RegExp(i,"")},u=function(){return new RegExp(o,"")};function l(t){var n=function(t){return t.replace(s(),(function(t){for(var n=[],e=1;e<arguments.length;e++)n[e-1]=arguments[e];var r=n[n.length-1].domain;return t.replace(r,c)}))}(t);return'javascript:window.clickflare.l="'.concat(n,'"; void 0;')}function d(t,n){if(n&&t&&n.apply(document,[t]),/loaded|interactive|complete/.test(document.readyState))for(var e=0,c=document.links.length;e<c;e++)if(s().test(document.links[e].href)){var r=document.links[e];window.clickflare.links_replaced.has(r)||(r.href=l(r.href),window.clickflare.links_replaced.add(r))}}var f,h,m,p;!function(r,a){var i=document.onreadystatechange;window.clickflare||(window.clickflare={listeners:{},customParams:{},links_replaced:new Set,addEventListener:function(t,n){var e=this.listeners[t]||[];e.includes(n)||e.push(n),this.listeners[t]=e},dispatchEvent:function(t,n){n&&(this.customParams[t]=n),(this.listeners[t]||[]).forEach((function(t){return t(n)}))},push:function(t,n){n&&(this.customParams[t]=n),(this.listeners[t]||[]).forEach((function(t){return t(n)}))}},document.onreadystatechange=function(t){return d(t,i)},d(null,i),setTimeout((function(){!function(r,a){var i,o=function(r,a){var i=new URL("".concat(c).concat(r));o=a,s="{",u=s+s,l="_",d=l+l,o.startsWith(u)||o.startsWith(d)||i.searchParams.set(n,a);var o,s,u,l,d;return i.searchParams.append(t,document.referrer),i.searchParams.append(e,location.href),i.searchParams.append("lpt",document.title),i.searchParams.append("t",(new Date).getTime().toString()),i.toString()}(r,a),s=document.createElement("script"),l=document.scripts[0];s.async=1,s.src=o,s.onerror=function(){!function(){for(var t=function(t,n){var e=document.links[t];u().test(decodeURI(e.href))&&setTimeout((function(){e&&e.setAttribute("href",function(t){var n=t.match(u());if(n){var e=(n.groups||{}).original_link;return e?e.slice(0,-1):t}return t}(decodeURI(e.href)))}))},n=0,e=document.links.length;n<e;n++)t(n)}()},null===(i=l.parentNode)||void 0===i||i.insertBefore(s,l)}(r,a)})))}("".concat("/cf/tags","/").concat(new URL(window.location.href).searchParams.get("cftmid")||"69dfdd0c15a3b200126d10c1"),(m=new URL(window.location.href).searchParams.get(n),f=new RegExp("(^| )".concat("cf_cpid","=([^;]+)")),p=(h=document.cookie.match(f))&&h.pop()||null,m||p||"69dfdd0c15a3b200126d10c1"))}();</script>
+  <!-- End Clickflare Tracking Script -->
+
+</head>
+<body>
+
+  <!-- Particle Background -->
+  <div id="particle-bg">
+    <div class="gradient-overlay"></div>
+  </div>
+
+  <!-- Main Page -->
+  <div class="page-wrapper">
+    <div class="card">
+
+      <!-- Brand -->
+      <div class="brand animate-in delay-1">
+        <!-- TesterUp star icon (SVG inline) -->
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L14.5 9H22L16 13.5L18.5 20.5L12 16L5.5 20.5L8 13.5L2 9H9.5L12 2Z"
+                fill="currentColor"/>
+        </svg>
+        <span class="brand-name">tester<span>up</span></span>
+      </div>
+
+      <!-- Headline -->
+      <div class="headline animate-in delay-2">
+        <h1>Get <span class="highlight">Paid To Play</span></h1>
+        <p class="subtitle">earn real money playing games!</p>
+      </div>
+
+      <!-- Bonus Badge -->
+      <div class="bonus-badge animate-in delay-3">
+        <!-- Gift icon -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="8" width="18" height="4" rx="1"/>
+          <path d="M12 8v13"/>
+          <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/>
+          <path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/>
+        </svg>
+        <span>$5 BONUS on Sign Up!</span>
+      </div>
+
+      <!-- Games line -->
+      <p class="games-line animate-in delay-3">🎮 Play mobile games, complete tasks &amp; earn cash</p>
+
+      <!-- CTA Button -->
+      <a id="cta-button" class="cta-btn box-glow-strong animate-in delay-4" href="https://track.gamerewrds.com/cf/click/1">
+        Download Now →
+      </a>
+
+      <!-- Trust Badges -->
+      <div class="trust-badges animate-in delay-4">
+        <span>✓ Free</span>
+        <span>✓ Instant Cashout</span>
+        <span>✓ No Credit Card</span>
+      </div>
+
+      <!-- Feature Grid -->
+      <div class="feature-grid animate-in delay-5">
+
+        <!-- Sign Up -->
+        <div class="feature-card glass-strong">
+          <div class="feature-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
+              <path d="M12 18h.01"/>
+            </svg>
+          </div>
+          <span class="feature-title">Sign Up</span>
+          <span class="feature-desc">Create your free TesterUp account</span>
+        </div>
+
+        <!-- Play & Earn -->
+        <div class="feature-card glass-strong">
+          <div class="feature-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <line x1="6" x2="10" y1="11" y2="11"/>
+              <line x1="8" x2="8" y1="9" y2="13"/>
+              <line x1="15" x2="15.01" y1="12" y2="12"/>
+              <line x1="18" x2="18.01" y1="10" y2="10"/>
+              <path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"/>
+            </svg>
+          </div>
+          <span class="feature-title">Play &amp; Earn</span>
+          <span class="feature-desc">Play mobile games for real cash</span>
+        </div>
+
+        <!-- Complete Tasks -->
+        <div class="feature-card glass-strong">
+          <div class="feature-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>
+            </svg>
+          </div>
+          <span class="feature-title">Complete Tasks</span>
+          <span class="feature-desc">Finish tasks to boost earnings</span>
+        </div>
+
+        <!-- Cash Out -->
+        <div class="feature-card glass-strong">
+          <div class="feature-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="8" width="18" height="4" rx="1"/>
+              <path d="M12 8v13"/>
+              <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/>
+              <path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/>
+            </svg>
+          </div>
+          <span class="feature-title">Cash Out</span>
+          <span class="feature-desc">Withdraw anytime via PayPal</span>
+        </div>
+
+      </div><!-- /feature-grid -->
+
+      <!-- Important Note -->
+      <div class="important-note glass animate-in delay-6">
+        <p>
+          <span class="label">Important:</span>
+          Complete 1-2 starter tasks to unlock game rewards &amp; cash payouts!
+        </p>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="stats-bar animate-in delay-7">
+        <span>10M+ Users</span>
+        <span class="dot">·</span>
+        <span>$50M+ Paid Out</span>
+        <span class="dot">·</span>
+        <span>🇺🇸 US</span>
+      </div>
+
+    </div><!-- /card -->
+  </div><!-- /page-wrapper -->
+
+
+  <!-- ============================================================ -->
+  <!-- CTA CLICK HANDLER — fires Lead pixel then redirects         -->
+  <!--                                                             -->
+  <!-- STRATEGY:                                                   -->
+  <!--  1. Button href = real CF click URL (so Clickflare tracks   -->
+  <!--     it AND replaces it with the full redirect URL)          -->
+  <!--  2. We intercept the click BEFORE Clickflare's handler      -->
+  <!--     using capture phase + stopImmediatePropagation          -->
+  <!--  3. Fire fbq Lead immediately                               -->
+  <!--  4. Use sendBeacon fallback to guarantee delivery           -->
+  <!--  5. Wait 600ms then navigate to the CF click URL            -->
+  <!--     (Clickflare will have replaced btn.href by then)        -->
+  <!-- ============================================================ -->
+  <script>
+  (function() {
+    var PIXEL_ID = '2133166377443921';
+    var FALLBACK_URL = 'https://track.gamerewrds.com/cf/click/1';
+
+    // ── sendBeacon fallback: fires Lead directly to Facebook even
+    //    if fbevents.js hasn't loaded yet or page is unloading ──
+    function fireLeadBeacon() {
+      try {
+        var params = [
+          'id=' + PIXEL_ID,
+          'ev=Lead',
+          'dl=' + encodeURIComponent(location.href),
+          'rl=' + encodeURIComponent(document.referrer),
+          'ts=' + Date.now(),
+          'cd[content_name]=CTA+Click',
+          'v=2.9.136',
+          'r=stable',
+          'ec=0',
+          'o=4126',
+          'fbp=' + (document.cookie.match(/_fbp=([^;]+)/) || ['', ''])[1],
+          'fbc=' + (document.cookie.match(/_fbc=([^;]+)/) || ['', ''])[1]
+        ].join('&');
+        var url = 'https://www.facebook.com/tr/?' + params;
+        if (navigator.sendBeacon) {
+          navigator.sendBeacon(url);
+        } else {
+          new Image().src = url;
+        }
+      } catch(e) {}
+    }
+
+    function attachHandler() {
+      var btn = document.getElementById('cta-button');
+      if (!btn) return;
+
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        // 1. Fire via fbq() if the real pixel library has loaded
+        if (typeof fbq === 'function' && typeof fbq.callMethod === 'function') {
+          fbq('track', 'Lead');
+        } else if (typeof fbq === 'function') {
+          // fbq stub exists but fbevents.js still loading — push to queue
+          fbq('track', 'Lead');
+          // Also fire beacon directly as backup
+          fireLeadBeacon();
+        } else {
+          // fbq not available at all — fire beacon directly
+          fireLeadBeacon();
+        }
+
+        // 2. Get the redirect URL:
+        //    - If Clickflare has already replaced btn.href, use that
+        //    - Otherwise fall back to the raw CF click URL
+        var dest = btn.href || FALLBACK_URL;
+        if (!dest || dest === location.href + '#' || dest === '#') {
+          dest = FALLBACK_URL;
+        }
+
+        // 3. Navigate after 600ms — gives fbevents.js time to send the beacon
+        setTimeout(function() {
+          window.location.href = dest;
+        }, 600);
+
+      }, true); // capture phase — fires BEFORE Clickflare's bubble-phase handler
+    }
+
+    // Attach as soon as DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', attachHandler);
+    } else {
+      attachHandler();
+    }
+  })();
+  </script>
+  <!-- End CTA Click Handler -->
+
+</body>
+</html>
