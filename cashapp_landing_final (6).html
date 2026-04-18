@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Cash App Program</title>
+
+  <!-- ============================================================ -->
+  <!-- ★  META PIXEL  ★                                            -->
+  <!-- Pixel ID is set once here — easy to update anytime.         -->
+  <!-- ============================================================ -->
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2133166377443921');
+  fbq('track', 'PageView');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=2133166377443921&ev=PageView&noscript=1"/>
+  </noscript>
+  <!-- End Meta Pixel Code -->
+
+  <!-- ============================================================ -->
+  <!-- ★  CLICKFLARE TRACKING SCRIPT  ★                            -->
+  <!-- Sets the cf_ cookie so CTA click/1 can find it.             -->
+  <!-- ============================================================ -->
+  <script>!function(){"use strict";var t="lp_ref",n="cpid",e="lpurl",c="https://track.gethourlyrewards.com",r="(?<domain>http(?:s?)://[^/]*)".concat("/cf/click"),a="(?:(?:/(?<cta>[1-9][0-9]*)/?)|(?:/))?",i="^".concat(r).concat(a).concat("(?:$|(\\?.*))" ),o='javascript:window.clickflare.l="(?<original_link>'.concat(r).concat(a,'("|( \\?[^"]* "))). *'),s=function(){return new RegExp(i,"")},u=function(){return new RegExp(o,"")};function l(t){var n=function(t){return t.replace(s(),(function(t){for(var n=[],e=1;e<arguments.length;e++)n[e-1]=arguments[e];var r=n[n.length-1].domain;return t.replace(r,c)}))}(t);return'javascript:window.clickflare.l="'.concat(n,'"; void 0;')}function d(t,n){if(n&&t&&n.apply(document,[t]),/loaded|interactive|complete/.test(document.readyState))for(var e=0,c=document.links.length;e<c;e++)if(s().test(document.links[e].href)){var r=document.links[e];window.clickflare.links_replaced.has(r)||(r.href=l(r.href),window.clickflare.links_replaced.add(r))}}var f,h,m,p;!function(r,a){var i=document.onreadystatechange;window.clickflare||(window.clickflare={listeners:{},customParams:{},links_replaced:new Set,addEventListener:function(t,n){var e=this.listeners[t]||[];e.includes(n)||e.push(n),this.listeners[t]=e},dispatchEvent:function(t,n){n&&(this.customParams[t]=n),(this.listeners[t]||[]).forEach((function(t){return t(n)}))},push:function(t,n){n&&(this.customParams[t]=n),(this.listeners[t]||[]).forEach((function(t){return t(n)}))}}),document.onreadystatechange=function(t){return d(t,i)},d(null,i),setTimeout((function(){!function(r,a){var i,o=function(r,a){var i=new URL("".concat(c).concat(r));o=a,s="{",u=s+s,l="_",d=l+l,o.startsWith(u)||o.startsWith(d)||i.searchParams.set(n,a);var o,s,u,l,d;return i.searchParams.append(t,document.referrer),i.searchParams.append(e,location.href),i.searchParams.append("lpt",document.title),i.searchParams.append("t",(new Date).getTime().toString()),i.toString()}(r,a),s=document.createElement("script"),l=document.scripts[0];s.async=1,s.src=o,s.onerror=function(){!function(){for(var t=function(t,n){var e=document.links[t];u().test(decodeURI(e.href))&&setTimeout((function(){e&&e.setAttribute("href",function(t){var n=t.match(u());if(n){var e=(n.groups||{}).original_link;return e?e.slice(0,-1):t}return t}(decodeURI(e.href)))}))},n=0,e=document.links.length;n<e;n++)t(n)}()},null===(i=l.parentNode)||void 0===i||i.insertBefore(s,l)}(r,a)}))}("".concat("/cf/tags","/").concat(new URL(window.location.href).searchParams.get("cftmid")||"69d76ef617f40700128e8b12"),(m=new URL(window.location.href).searchParams.get(n),f=new RegExp("(^| )".concat("cf_cpid","=([^;]+)")),p=(h=document.cookie.match(f))&&h.pop()||null,m||p||"69e3015c75ec6a00122abf1c"))}();</script>
+  <!-- End Clickflare Tracking Script -->
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @keyframes softGlow {
+      0%   { box-shadow: 0 0 22px 6px rgba(0,214,50,0.20), 0 0 55px 14px rgba(0,214,50,0.08); }
+      50%  { box-shadow: 0 0 38px 12px rgba(0,214,50,0.38), 0 0 80px 24px rgba(0,214,50,0.16); }
+      100% { box-shadow: 0 0 22px 6px rgba(0,214,50,0.20), 0 0 55px 14px rgba(0,214,50,0.08); }
+    }
+    @keyframes ripple {
+      0%   { transform: scale(1);   opacity: 0.45; }
+      100% { transform: scale(2.1); opacity: 0; }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position:  200% center; }
+    }
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.2; }
+    }
+    @keyframes countFlip {
+      0%   { opacity: 1; transform: translateY(0); }
+      40%  { opacity: 0; transform: translateY(-5px); }
+      60%  { opacity: 0; transform: translateY(5px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes logoFloat {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-4px); }
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      background-color: #ffffff;
+      color: #111111;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
+
+    /* ── Scrollable content ── */
+    .scroll-area {
+      flex: 1;
+      width: 100%;
+      max-width: 390px;
+      padding: 8px 20px 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: fadeSlideUp 0.45s ease both;
+      overflow-y: auto;
+    }
+
+    /* ── Logo ── */
+    .logo-wrap {
+      margin-bottom: 6px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      animation: logoFloat 3.8s ease-in-out infinite;
+    }
+
+    /*
+      Apple Pay wordmark built entirely in HTML/CSS.
+      The  glyph is the real Apple SVG path rendered at a fixed size,
+      and "Pay" is a <span> — both sit in a flex row, perfectly centered.
+    */
+    .applepay-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      line-height: 1;
+    }
+
+    .applepay-mark svg {
+      width: 28px;
+      height: 34px;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .applepay-mark .pay-text {
+      font-size: 30px;
+      font-weight: 300;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+      line-height: 1;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* ── Stars ── */
+    .stars { display: flex; gap: 3px; justify-content: center; margin-bottom: 3px; margin-top: 6px; }
+    .stars svg { width: 14px; height: 14px; fill: #00D632; }
+
+    .review-text { font-size: 12px; color: #888888; margin-bottom: 6px; }
+    .review-text strong { color: #111; font-weight: 600; }
+
+    /* ── Headline ── */
+    h1 {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 4px;
+      text-align: center;
+      color: #111111;
+      letter-spacing: -0.3px;
+    }
+
+    .desc {
+      font-size: 13px;
+      color: #555555;
+      line-height: 1.55;
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    /* ── Steps ── */
+    .steps-label {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #999999;
+      font-weight: 600;
+      margin-bottom: 7px;
+      align-self: flex-start;
+    }
+
+    .steps {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 7px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 9px 12px;
+      background: #f9f9f9;
+      border: 1px solid #ebebeb;
+      text-align: left;
+    }
+
+    .step:first-child { border-radius: 12px 12px 0 0; }
+    .step:last-child  { border-radius: 0 0 12px 12px; }
+    .step:not(:first-child) { border-top: none; }
+
+    .step-num {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: #eeeeee;
+      border: 1px solid #dddddd;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; color: #555;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    .step-body { flex: 1; }
+    .step-title { font-size: 13px; font-weight: 600; color: #111; margin-bottom: 2px; }
+    .step-sub   { font-size: 11px; color: #777777; line-height: 1.5; }
+
+    .step-badge {
+      display: inline-block;
+      background: #f0f0f0; border: 1px solid #e0e0e0;
+      border-radius: 6px; padding: 2px 7px;
+      font-size: 10px; color: #888888; font-weight: 600; margin-top: 4px;
+    }
+
+    .step.highlight { background: #f9f9f9; border-color: #ebebeb; }
+    .step.highlight .step-num { background: #eeeeee; border-color: #dddddd; color: #555; }
+
+    /* ── Live bar ── */
+    .live-bar {
+      display: flex; align-items: center; gap: 8px;
+      background: #f5f5f5; border: 1px solid #e8e8e8;
+      border-radius: 10px; padding: 7px 13px;
+      width: 100%; font-size: 12px; color: #888888;
+    }
+
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #00D632; flex-shrink: 0;
+      animation: dotPulse 1.5s ease-in-out infinite;
+    }
+
+    .live-count {
+      font-weight: 700; color: #111; font-size: 13px;
+      display: inline-block; min-width: 46px;
+    }
+    .live-count.flip { animation: countFlip 0.32s ease both; }
+
+    /* ── Sticky CTA footer ── */
+    .cta-footer {
+      width: 100%;
+      max-width: 390px;
+      padding: 8px 20px calc(8px + env(safe-area-inset-bottom));
+      background: linear-gradient(to top, #080808 75%, transparent);
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
+    }
+
+    .btn-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .btn-wrap::before,
+    .btn-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 14px;
+      border: 1.5px solid rgba(0,214,50,0.35);
+      animation: ripple 2.2s ease-out infinite;
+      pointer-events: none;
+    }
+    .btn-wrap::after { animation-delay: 1.1s; }
+
+    .btn {
+      display: block; width: 100%;
+      padding: 15px 32px;
+      background: linear-gradient(135deg, #00e83a 0%, #00b82e 100%);
+      color: #ffffff;
+      font-size: 15px; font-weight: 700;
+      border: none; border-radius: 13px;
+      cursor: pointer; text-align: center; text-decoration: none;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      position: relative; z-index: 1; overflow: hidden;
+      animation: softGlow 2s ease-in-out infinite;
+      transition: transform 0.12s ease, filter 0.15s ease;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(105deg,
+        transparent 35%, rgba(255,255,255,0.50) 50%, transparent 65%);
+      background-size: 200% 100%;
+      animation: shimmer 2.2s linear infinite;
+      border-radius: inherit; pointer-events: none;
+    }
+
+    .btn:hover  { filter: brightness(1.06); transform: translateY(-1px); }
+    .btn:active { transform: scale(0.97); }
+
+    .footer-note {
+      font-size: 10px; color: #aaaaaa;
+      line-height: 1.6; text-align: center; margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-area">
+
+    <!-- Cash App logo -->
+    <div class="logo-wrap">
+      <img src="data:image/png;base64,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" alt="Cash App" style="width:72px;height:72px;display:block;margin:0 auto 6px;">
+    </div>
+    <!-- Stars -->
+    <div class="stars">
+      <svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>
+    </div>
+
+    <p class="review-text"><strong>+12,000 reviews</strong> &nbsp;·&nbsp; Rated 4.9 / 5</p>
+
+    <h1>Cash App Program</h1>
+
+    <p class="desc">
+      Complete a few quick offers and receive your<br>
+      Cash App reward sent directly to your balance.
+    </p>
+
+    <!-- Steps -->
+    <p class="steps-label">How it works</p>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Enter your info</div>
+          <div class="step-sub">Provide your email and basic details to verify your eligibility.</div>
+        </div>
+      </div>
+
+      <div class="step highlight">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Complete 3–5 offers</div>
+          <div class="step-sub">Try a handful of offers from our partners to unlock your reward.</div>
+          <span class="step-badge">Only 3–5 required</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Deposit to Cash App</div>
+          <div class="step-sub">Your reward is sent directly to your Cash App balance — instant, no gift cards.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Live users -->
+    <div class="live-bar">
+      <span class="live-dot"></span>
+      <span><span class="live-count" id="live-count">2,893</span> people earning right now</span>
+    </div>
+
+    <!-- CTA button — right below live counter -->
+    <div class="btn-wrap" style="width:100%; margin-top:32px;">
+      <a class="btn" id="cta-btn" href="#" target="_blank" rel="noopener noreferrer"
+         onclick="fireLeadPixel();">
+        Start Earning
+      </a>
+    </div>
+    <p class="footer-note" style="margin-top:6px;">Available for eligible US users only.</p>
+
+  </div><!-- /scroll-area -->
+
+  <!-- ============================================================ -->
+  <!-- ★  CHANGE YOUR CTA LINK HERE  ★                             -->
+  <!-- Replace the URL below with your new affiliate link anytime.  -->
+  <!-- ============================================================ -->
+  <script>
+    var CTA_LINK = "https://track.gethourlyrewards.com/cf/click";
+    // ============================================================
+    document.getElementById('cta-btn').href = CTA_LINK;
+
+    // Fire Meta Lead pixel — with currency/value + test_event_code support
+    function fireLeadPixel() {
+        var _tec = new URLSearchParams(window.location.search).get('test_event_code');
+        if (typeof fbq !== 'undefined') {
+            if (_tec) {
+                fbq('track', 'Lead', {currency: 'USD', value: 1.00}, {eventID: 'lead_' + Date.now(), testEventCode: _tec});
+            } else {
+                fbq('track', 'Lead', {currency: 'USD', value: 1.00});
+            }
+        }
+        var beaconUrl = 'https://www.facebook.com/tr?id=2133166377443921&ev=Lead&cd[currency]=USD&cd[value]=1.00&noscript=1&t=' + Date.now();
+        if (_tec) { beaconUrl += '&test_event_code=' + encodeURIComponent(_tec); }
+        if (navigator.sendBeacon) {
+            navigator.sendBeacon(beaconUrl);
+        } else {
+            new Image().src = beaconUrl;
+        }
+    }
+
+    // Backup addEventListener
+    document.getElementById('cta-btn').addEventListener('click', function() { fireLeadPixel(); });
+
+    // ── Fluctuating live user count ──────────────────────────────
+    // Starts around 2893, swings 6–15 randomly up or down each tick
+    var countEl = document.getElementById('live-count');
+    var MIN = 2860, MAX = 2940;
+    var current = 2886 + Math.floor(Math.random() * 14); // 2886–2899 on load
+    countEl.textContent = current.toLocaleString();
+
+    function updateCount() {
+      var swing = 6 + Math.floor(Math.random() * 10); // 6–15
+      var direction = Math.random() < 0.5 ? 1 : -1;
+      current = Math.max(MIN, Math.min(MAX, current + (swing * direction)));
+
+      countEl.classList.remove('flip');
+      void countEl.offsetWidth;
+      countEl.classList.add('flip');
+      countEl.textContent = current.toLocaleString();
+
+      setTimeout(updateCount, 1800 + Math.random() * 600);
+    }
+
+    setTimeout(updateCount, 1500 + Math.random() * 800);
+  </script>
+</body>
+</html>
