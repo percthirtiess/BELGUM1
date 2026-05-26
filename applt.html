@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apple Pay Rewards</title>
+
+  <!-- ============================================================
+       EDITABLE LINKS — change the URL below to update the
+       "CLAIM YOUR REWARDS" button destination
+       ============================================================ -->
+  <script>
+    window.CTA_URL = "https://www.z8wodo1q.com/24QSBG/MM55P9/?sub1=ISRWL1&sub2=applpay&sub3=it%20rlly%20be%20so%20easy%20yall%20try%20this&sub4=&sub5=&placement=__PLACEMENT__";
+  </script>
+  <!-- ============================================================ -->
+
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --brand: #000;
+      --brand2: #1d1d1f;
+      --accent: #000;
+      --accent2: #1d1d1f;
+      --blue: #0071e3;
+      --blue2: #0077ed;
+      --bg-card: rgba(255,255,255,.95);
+      --border: rgba(0,0,0,.10);
+      --brand-glow: rgba(0,113,227,.35);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+      line-height: 1.47059;
+      font-weight: 400;
+      letter-spacing: -.01em;
+      background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0,113,227,.10), transparent),
+                  linear-gradient(180deg, #f5f5f7 0%, #fafafa 50%, #eef1f3 100%);
+      position: relative;
+    }
+    .bg-orb { position: fixed; border-radius: 50%; filter: blur(80px); opacity: .18; pointer-events: none; z-index: 0; }
+    .orb1 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(0,113,227,.30), transparent); top: -100px; left: -100px; animation: float1 20s ease-in-out infinite; }
+    .orb2 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(29,29,31,.18), transparent); bottom: -50px; right: -50px; animation: float2 15s ease-in-out infinite; }
+    @keyframes float1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(50px,50px) scale(1.1); } }
+    @keyframes float2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-30px,-40px) scale(1.15); } }
+    .container { max-width: 480px; margin: 0 auto; padding: 60px 20px 40px; text-align: center; position: relative; z-index: 1; }
+    .logo-wrapper { display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+    .logo-container { width: 120px; height: 90px; border-radius: 24px; display: flex; align-items: center; justify-content: center; background: #000; border: none; box-shadow: 0 10px 40px rgba(0,0,0,.22); overflow: hidden; padding: 0; transition: transform .3s ease; }
+    .logo-container:hover { transform: scale(1.05); }
+    .logo-svg { display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .logo-svg svg { fill: #fff; }
+    .logo-pay { color: #fff; font-weight: 600; font-size: 28px; letter-spacing: .3px; font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif; line-height: 1; }
+    .youre-in-text { font-size: clamp(26px,7.5vw,42px); font-weight: 900; line-height: 1.15; color: var(--brand); text-shadow: 0 2px 4px rgba(0,0,0,.06); white-space: nowrap; }
+    .text-neon { color: var(--blue); }
+    .subtitle { font-size: 15px; color: var(--muted); line-height: 1.5; margin-bottom: 30px; padding: 0 10px; }
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; text-align: left; backdrop-filter: blur(20px); box-shadow: 0 8px 32px rgba(0,0,0,.08); position: relative; padding: 0; margin-top: 40px; }
+    .section-title { font-size: 14px; font-weight: 700; text-align: center; margin: 0; padding: 24px 0; color: var(--muted); font-family: -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+    .li { display: flex; gap: 16px; padding: 20px 24px; border-bottom: 1px solid rgba(0,0,0,.06); align-items: flex-start; text-align: left; background: transparent; }
+    .li:first-of-type { border-top: 1px solid rgba(0,0,0,.06); }
+    .li:last-child { border-bottom: 0; }
+    .check { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: var(--blue); font-size: 14px; font-weight: 700; color: #fff; flex-shrink: 0; box-shadow: 0 0 10px var(--brand-glow); }
+    .li b { display: block; color: var(--text); font-size: 16px; margin-bottom: 4px; font-weight: 700; }
+    .muted-text { color: var(--muted); font-size: 13px; line-height: 1.4; }
+    .cta { display: block; width: 100%; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff !important; font-weight: 800; font-size: 17px; text-transform: uppercase; letter-spacing: .5px; border: 0; border-radius: 16px; padding: 20px; margin-top: 30px; margin-bottom: 40px; text-decoration: none; cursor: pointer; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,.25); transition: all .3s ease; animation: pulse 3s ease-in-out infinite; }
+    .cta::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent); transition: left .5s; }
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 15px 40px rgba(0,0,0,.4); }
+    .cta:hover::before { left: 100%; }
+    .foot { color: var(--muted); font-size: 12px; text-align: center; margin-top: 16px; opacity: .7; }
+    .activation-notice { background: rgba(0,113,227,.06); border: 2px solid var(--blue); border-radius: 16px; padding: 20px; margin-top: 24px; text-align: left; box-shadow: 0 0 30px rgba(0,113,227,.12); animation: glow-border 2s ease-in-out infinite; }
+    @keyframes glow-border { 0%,100% { box-shadow: 0 0 20px rgba(0,113,227,.12); border-color: var(--blue); } 50% { box-shadow: 0 0 35px rgba(0,113,227,.28); border-color: var(--blue2); } }
+    .activation-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .lock-icon { font-size: 20px; line-height: 1; flex-shrink: 0; }
+    .activation-title { font-size: 16px; font-weight: 700; color: var(--text); flex: 1; }
+    .important-badge { background: var(--brand); color: #fff; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 6px; letter-spacing: .5px; }
+    .activation-text { font-size: 14px; color: var(--muted); line-height: 1.5; margin: 0; }
+    .highlight-green { color: var(--blue); font-weight: 700; }
+    @keyframes pulse { 0%,100% { box-shadow: 0 10px 30px rgba(0,0,0,.25); } 50% { box-shadow: 0 15px 40px rgba(0,113,227,.45); } }
+    @media (max-width: 600px) { .container { padding: 60px 16px 32px; } .li { padding-left: 16px; padding-right: 16px; } }
+  </style>
+</head>
+<body>
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+
+  <div class="container">
+    <div class="logo-wrapper">
+      <div class="logo-container">
+        <span class="logo-svg">
+          <svg aria-label="Apple" height="28" viewBox="0 0 24 24" width="28" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
+          </svg>
+          <span class="logo-pay">Pay</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="youre-in-text">
+      Get Started with<br/><span class="text-neon">Apple Pay Rewards!</span>
+    </div>
+
+    <p class="subtitle" style="margin-top:16px;margin-bottom:32px;padding:0;">
+      Complete a few quick offers &amp; get your<br/>Apple Pay rewards instantly!
+    </p>
+
+    <a class="cta" id="cta" href="#">
+      CLAIM YOUR REWARDS
+    </a>
+
+    <div class="card">
+      <div class="section-title">YOUR REWARDS JOURNEY</div>
+      <div class="li">
+        <span class="check">✓</span>
+        <div>
+          <b>Click on "Claim Your Rewards"</b>
+          <div class="muted-text">(The button above)</div>
+        </div>
+      </div>
+      <div class="li">
+        <span class="check">✓</span>
+        <div>
+          <b>Complete at least 2–5 suggested deals</b>
+          <div class="muted-text">(Most people earn $250+ in Apple Pay rewards with just a few deals!)</div>
+        </div>
+      </div>
+      <div class="li" style="border-bottom:none;">
+        <span class="check">✓</span>
+        <div>
+          <b>Claim your Apple Pay rewards &amp; repeat anytime</b>
+          <div class="muted-text">(Many top users complete multiple deals for bonus shopping rewards)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="activation-notice">
+      <div class="activation-header">
+        <span class="lock-icon">🔓</span>
+        <span class="activation-title">Activation Required</span>
+        <span class="important-badge">⚠️ IMPORTANT</span>
+      </div>
+      <p class="activation-text">
+        New users: Complete <span class="highlight-green">2 quick offers</span> in a single day to receive an additional <span class="highlight-green">Apple Pay bonus rewards!</span>
+      </p>
+    </div>
+
+    <div class="foot">Secure &amp; Private Shopping</div>
+  </div>
+
+  <script>
+    // Wire up the CTA button to the editable URL defined at the top of this file
+    document.getElementById('cta').href = window.CTA_URL;
+  </script>
+</body>
+</html>
