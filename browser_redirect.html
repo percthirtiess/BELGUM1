@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open in Browser</title>
+
+  <!-- ============================================================
+       EDITABLE — change this to your landing page URL
+       ============================================================ -->
+  <script>
+    var LANDING_PAGE_URL = "https://myhourlyrewards.com/apl31.html";
+  </script>
+  <!-- ============================================================ -->
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: #0a0a0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Radial glow background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(52, 211, 153, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 32px;
+      max-width: 420px;
+      width: 100%;
+    }
+
+    /* Arrow icon box */
+    .icon-box {
+      width: 90px;
+      height: 90px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 36px;
+      backdrop-filter: blur(10px);
+    }
+
+    .icon-box svg {
+      width: 38px;
+      height: 38px;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    h1 span {
+      color: #34d399;
+    }
+
+    p {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.50);
+      line-height: 1.6;
+      margin-bottom: 44px;
+      max-width: 280px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 20px 32px;
+      background: #34d399;
+      color: #0a0a0a;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      box-shadow: 0 0 40px rgba(52, 211, 153, 0.30);
+      margin-bottom: 24px;
+    }
+
+    .btn:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 60px rgba(52, 211, 153, 0.45);
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .footer-text {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.25);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-text span {
+      margin: 0 8px;
+      opacity: 0.4;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Arrow icon -->
+    <div class="icon-box">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7 17L17 7M17 7H7M17 7V17" stroke="#34d399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <h1>Open in <span>browser</span></h1>
+    <p>For the best experience, this page needs to open in your browser.</p>
+
+    <a class="btn" id="continueBtn" href="#" onclick="handleContinue(event);">
+      CONTINUE
+    </a>
+
+    <div class="footer-text">
+      Safari <span>·</span> Chrome <span>·</span> Secure
+    </div>
+
+  </div>
+
+  <script>
+    // Detect if user is in TikTok or other in-app browser
+    var ua = navigator.userAgent || '';
+    var isInAppBrowser = /BytedanceWebview|ByteLocale|musical_ly|TikTok|Instagram|FBAN|FBAV|Twitter|Line\/|MicroMessenger|WeChat/i.test(ua);
+
+    function handleContinue(e) {
+      e.preventDefault();
+      var target = LANDING_PAGE_URL;
+
+      if (isInAppBrowser) {
+        // Try to open in external browser using various methods
+        var opened = false;
+
+        // iOS: try x-safari scheme
+        if (/iPhone|iPad|iPod/i.test(ua)) {
+          try {
+            window.location.href = 'x-safari-' + target;
+            opened = true;
+          } catch(err) {}
+
+          // Fallback: try intent scheme for Android-style or just navigate
+          setTimeout(function() {
+            window.location.href = target;
+          }, 300);
+        } else {
+          // Android: try intent scheme
+          try {
+            var intentUrl = 'intent://' + target.replace(/^https?:\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;end';
+            window.location.href = intentUrl;
+            opened = true;
+          } catch(err) {}
+
+          setTimeout(function() {
+            window.location.href = target;
+          }, 300);
+        }
+      } else {
+        // Already in a real browser — just go directly
+        window.location.href = target;
+      }
+    }
+
+    // If already in a real browser (not in-app), skip this page entirely
+    // and redirect immediately
+    if (!isInAppBrowser) {
+      window.location.replace(LANDING_PAGE_URL);
+    }
+  </script>
+
+</body>
+</html>
