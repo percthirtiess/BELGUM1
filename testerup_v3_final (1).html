@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testerup - Get Paid to Test Apps &amp; Games</title>
+
+  <!-- ============================================================
+       CLICKFLARE LANDER SCRIPT
+       Container ID: 69d76ef617f40700128e8b12
+       Campaign ID:  69e5cab1e3ea34001206749a
+  ============================================================ -->
+  <script>!function(){"use strict";var t="lp_ref",n="cpid",e="lpurl",c="https://track.gamerewrds.com",r="(?<domain>http(?:s?)://[^/]*)".concat("/cf/click"),a="(?:(?:/(?<cta>[1-9][0-9]*)/?)|(?:/))?",i="^".concat(r).concat(a).concat("(?:$|(\\?.*))"),o='javascript:window.clickflare.l="(?<original_link>'.concat(r).concat(a,'("|(\\?[^"]*"))).*'),s=function(){return new RegExp(i,"")},u=function(){return new RegExp(o,"")};function l(t){var n=function(t){return t.replace(s(),(function(t){for(var n=[],e=1;e<arguments.length;e++)n[e-1]=arguments[e];var r=n[n.length-1].domain;return t.replace(r,c)}))}(t);return'javascript:window.clickflare.l="'.concat(n,'"; void 0;')}function d(t,n){if(n&&t&&n.apply(document,[t]),/loaded|interactive|complete/.test(document.readyState))for(var e=0,c=document.links.length;e<c;e++)if(s().test(document.links[e].href)){var r=document.links[e];window.clickflare.links_replaced.has(r)||(r.href=l(r.href),window.clickflare.links_replaced.add(r))}}var f,h,m,p;!function(r,a){var i=document.onreadystatechange;window.clickflare||(window.clickflare={listeners:{},customParams:{},links_replaced:new Set,addEventListener:function(t,n){var e=this.listeners[t]||[];e.includes(n)||e.push(n),this.listeners[t]=e},dispatchEvent:function(t,n){n&&(this.customParams[t]=n),(this.listeners[t]||[]).forEach((function(t){return t(n)}))},push:function(t,n){n&&(this.customParams[t]=n),(this.listeners[t]||[]).forEach((function(t){return t(n)}))}},document.onreadystatechange=function(t){return d(t,i)},d(null,i),setTimeout((function(){!function(r,a){var i,o=function(r,a){var i=new URL("".concat(c).concat(r));o=a,s="{",u=s+s,l="_",d=l+l,o.startsWith(u)||o.startsWith(d)||i.searchParams.set(n,a);var o,s,u,l,d;return i.searchParams.append(t,document.referrer),i.searchParams.append(e,location.href),i.searchParams.append("lpt",document.title),i.searchParams.append("t",(new Date).getTime().toString()),i.toString()}(r,a),s=document.createElement("script"),l=document.scripts[0];s.async=1,s.src=o,s.onerror=function(){!function(){for(var t=function(t,n){var e=document.links[t];u().test(decodeURI(e.href))&&setTimeout((function(){e&&e.setAttribute("href",function(t){var n=t.match(u());if(n){var e=(n.groups||{}).original_link;return e?e.slice(0,-1):t}return t}(decodeURI(e.href)))}))},n=0,e=document.links.length;n<e;n++)t(n)}()},null===(i=l.parentNode)||void 0===i||i.insertBefore(s,l)}(r,a)})))}("".concat("/cf/tags","/").concat(new URL(window.location.href).searchParams.get("cftmid")||"69d76ef617f40700128e8b12",(m=new URL(window.location.href).searchParams.get(n),f=new RegExp("(^| )".concat("cf_cpid","=([^;]+)")),p=(h=document.cookie.match(f))&&h.pop()||null,m||p||"69e5cab1e3ea34001206749a")))}();</script>
+
+  <!-- ============================================================
+       META PIXEL - ID: 2133166377443921
+       PageView fires on load. Lead fires on Download Now click.
+  ============================================================ -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2133166377443921');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2133166377443921&ev=PageView&noscript=1"/></noscript>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: white;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 100%);
+    }
+
+    .animated-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .bg-gradient {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 140%;
+      height: 140%;
+      background: radial-gradient(circle at center, rgba(220, 38, 38, 0.25) 0%, rgba(127, 29, 29, 0.1) 40%, transparent 70%);
+      animation: pulseGlow 8s ease-in-out infinite;
+      filter: blur(100px);
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+      50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.6; }
+    }
+
+    .now-counter {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(248, 113, 113, 0.3);
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+    }
+
+    .now-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+      animation: pulse-dot 1.5s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+    }
+
+    .now-value {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .container {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 24px 16px 32px;
+      min-height: 100vh;
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .logo {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 12px;
+      border-radius: 16px;
+      object-fit: contain;
+      border: 2px solid rgba(248, 113, 113, 0.3);
+      background: rgba(239, 68, 68, 0.08);
+      padding: 6px;
+      box-shadow: 0 8px 24px rgba(239, 68, 68, 0.25);
+    }
+
+    .hero-text {
+      font-size: 42px;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 4px;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .hero-accent {
+      background: linear-gradient(90deg, #ff9068, #ff5fa3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 400;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .cta-button {
+      background: linear-gradient(90deg, #ff9068, #ff5fa3);
+      color: white;
+      border: none;
+      border-radius: 16px;
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 800;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 12px 32px rgba(255, 95, 163, 0.35);
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+      margin-top: 4px;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      pointer-events: none;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: translateX(-140%) skewX(-20deg);
+      animation: shine 2.2s linear infinite;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-140%) skewX(-20deg); }
+      100% { transform: translateX(320%) skewX(-20deg); }
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(255, 95, 163, 0.45);
+    }
+
+    .cta-button:active {
+      transform: translateY(0);
+    }
+
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.75);
+      font-weight: 600;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .trust-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #22c55e;
+    }
+
+    .stats-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .stat-card {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(248, 113, 113, 0.2);
+      border-radius: 14px;
+      padding: 12px 8px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .stat-value {
+      font-size: 20px;
+      font-weight: 900;
+      color: #ff9068;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    .earnings-section {
+      background: rgba(239, 68, 68, 0.09);
+      border: 1px solid rgba(248, 113, 113, 0.22);
+      border-radius: 18px;
+      padding: 18px;
+      text-align: center;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 24px rgba(239, 68, 68, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .earnings-label {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.75);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+    }
+
+    .earnings-display {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .earnings-column {
+      text-align: center;
+    }
+
+    .earnings-column-label {
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+
+    .earnings-amount {
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .you-spend {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .you-earn {
+      background: linear-gradient(90deg, #ffd2e4, #ff71ae);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .slider-container {
+      margin-top: 12px;
+    }
+
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, rgba(248, 113, 113, 0.3), rgba(248, 113, 113, 0.6));
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff9068, #ff5fa3);
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 95, 163, 0.4);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+      box-shadow: 0 6px 16px rgba(255, 95, 163, 0.5);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff9068, #ff5fa3);
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 95, 163, 0.4);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      background: rgba(239, 68, 68, 0.07);
+      border-radius: 12px;
+      border: 1px solid rgba(248, 113, 113, 0.15);
+      backdrop-filter: blur(10px);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .step-number {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #ff9068, #ff5fa3);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(255, 95, 163, 0.25);
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 2px;
+    }
+
+    .step-description {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.4;
+    }
+
+    .bottom-spacer {
+      height: 16px;
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 18px 14px 24px; gap: 16px; }
+      .hero-text { font-size: 36px; }
+      .logo { width: 52px; height: 52px; }
+      .stats-section { gap: 8px; }
+      .stat-value { font-size: 18px; }
+      .earnings-amount { font-size: 32px; }
+      .now-counter { top: 12px; right: 12px; padding: 6px 10px; font-size: 11px; }
+    }
+
+    @media (max-width: 360px), (max-height: 700px) {
+      .container { padding: 14px 12px 18px; gap: 12px; min-height: auto; }
+      .logo { width: 48px; height: 48px; }
+      .hero-text { font-size: 28px; }
+      .subtitle { font-size: 13px; }
+      .cta-button { padding: 14px; font-size: 14px; border-radius: 14px; }
+      .trust-row { font-size: 11px; gap: 10px; }
+      .stats-section { gap: 6px; }
+      .stat-value { font-size: 16px; }
+      .stat-label { font-size: 9px; }
+      .earnings-section { padding: 14px; }
+      .earnings-amount { font-size: 28px; }
+      .step { padding: 10px; gap: 10px; }
+      .step-number { width: 28px; height: 28px; font-size: 12px; }
+      .step-title { font-size: 12px; }
+      .step-description { font-size: 11px; }
+      .now-counter { top: 10px; right: 10px; padding: 5px 8px; font-size: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="animated-background">
+    <div class="bg-gradient"></div>
+  </div>
+
+  <div class="now-counter">
+    <span class="now-dot"></span>
+    <span><span class="now-value" id="nowCount">4,132</span> NOW</span>
+  </div>
+
+  <div class="container">
+
+    <div class="header">
+      <img
+        alt="Testerup"
+        class="logo"
+        src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/e0/0d/7a/e00d7a41-9bb6-fbee-fa51-6d47327c9f5b/Placeholder.mill/200x200bb-75.webp"
+      />
+      <h1 class="hero-text">Get paid for testing <span class="hero-accent">apps &amp; games</span></h1>
+      <p class="subtitle">Play mobile games you'd play anyway and unlock real cash rewards.</p>
+    </div>
+
+    <button class="cta-button" id="downloadBtn" type="button">
+      <span>Download Now</span>
+    </button>
+
+    <div class="trust-row">
+      <div class="trust-item"><span class="trust-dot"></span> 100% Free</div>
+      <div class="trust-item"><span class="trust-dot"></span> Real Rewards</div>
+      <div class="trust-item"><span class="trust-dot"></span> 60-Second Signup</div>
+    </div>
+
+    <div class="stats-section">
+      <div class="stat-card">
+        <div class="stat-value">16M+</div>
+        <div class="stat-label">Active Players</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">200+</div>
+        <div class="stat-label">Reward Options</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">4.6★</div>
+        <div class="stat-label">App Rating</div>
+      </div>
+    </div>
+
+    <div class="earnings-section">
+      <div class="earnings-label">See what you could earn back</div>
+      <div class="earnings-display">
+        <div class="earnings-column">
+          <div class="earnings-column-label">You Spend</div>
+          <div class="earnings-amount you-spend" id="spendAmount">$60</div>
+        </div>
+        <div class="earnings-column">
+          <div class="earnings-column-label">You Earn</div>
+          <div class="earnings-amount you-earn" id="earnAmount">$480</div>
+        </div>
+      </div>
+      <div class="slider-container">
+        <div class="slider-labels">
+          <span>$20</span>
+          <span>$500</span>
+        </div>
+        <input type="range" id="earningsSlider" min="20" max="500" value="60" step="10">
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <div class="step-title">Join Testerup</div>
+          <div class="step-description">Create a free account with your name and email.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <div class="step-title">Play &amp; Review Games</div>
+          <div class="step-description">Try new apps and complete fun challenges to earn.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <div class="step-title">Select Partner Deals</div>
+          <div class="step-description">Pick recommended offers to boost your balance faster.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <div class="step-title">Cash Out Your Earnings</div>
+          <div class="step-description">Withdraw via PayPal, CashApp, Venmo, Crypto &amp; more.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-spacer"></div>
+  </div>
+
+  <script>
+    // ============================================================
+    // ⚙️  EDITABLE CTA BUTTON URL — CHANGE THIS TO UPDATE WHERE THE BUTTON GOES
+    // ============================================================
+    var CF_CLICK_URL = "https://taptrcks.com/r/eyJ0IjoidGVzdGVydXAtYSIsInRpZCI6ImE1ZWQ5Y2ZkZjIwZmViNmM0ZGEwIiwidHMiOjE3NzY4OTYwNTM5NDN9?s2=ts1";
+
+    // ============================================================
+    // SPEND VS EARN SLIDER
+    // ============================================================
+    var slider = document.getElementById('earningsSlider');
+    var spendAmount = document.getElementById('spendAmount');
+    var earnAmount = document.getElementById('earnAmount');
+
+    function calculateEarnings(spend) {
+      // Formula: earn = spend * 8
+      return Math.round(spend * 8);
+    }
+
+    if (slider && spendAmount && earnAmount) {
+      function updateEarnings() {
+        var spend = parseInt(slider.value);
+        var earn = calculateEarnings(spend);
+        var sym = getCurrencySymbol();
+        spendAmount.textContent = sym + spend;
+        earnAmount.textContent = sym + earn;
+      }
+
+      slider.addEventListener('input', updateEarnings);
+      updateEarnings();
+    }
+
+    // ============================================================
+    // LIVE NOW COUNTER
+    // ============================================================
+    var nowCounter = document.getElementById('nowCount');
+    var baseCount = 4132;
+
+    function updateNowCounter() {
+      var increment = Math.floor(Math.random() * 5) + 1; // Random 1-5
+      baseCount += increment;
+      if (nowCounter) {
+        nowCounter.textContent = baseCount.toLocaleString();
+      }
+    }
+
+    // Update every 2-4 seconds
+    setInterval(updateNowCounter, Math.random() * 2000 + 2000);
+
+    // ============================================================
+    // CURRENCY SYMBOL
+    // ============================================================
+    function getCurrencySymbol() {
+      var s2 = new URLSearchParams(window.location.search).get('s2') || '';
+      return s2.toLowerCase().includes('uk') ? '£' : '$';
+    }
+
+    // ============================================================
+    // META PIXEL — Lead event fires on Download Now click (do not edit)
+    // ============================================================
+    var _leadFired = false;
+    function fireLeadPixel() {
+      if (_leadFired) return; // prevent double-fire on mobile (touchend + click)
+      _leadFired = true;
+      var _tec = new URLSearchParams(window.location.search).get('test_event_code');
+      // 1. fbq Lead event
+      if (typeof fbq !== 'undefined') {
+        if (_tec) {
+          fbq('track', 'Lead', {currency: 'USD', value: 1.00}, {eventID: 'lead_' + Date.now(), testEventCode: _tec});
+        } else {
+          fbq('track', 'Lead', {currency: 'USD', value: 1.00});
+        }
+      }
+      // 2. sendBeacon fallback — fires even if page navigates away
+      var beaconUrl = 'https://www.facebook.com/tr?id=2133166377443921&ev=Lead&cd[currency]=USD&cd[value]=1.00&noscript=1&t=' + Date.now();
+      if (_tec) { beaconUrl += '&test_event_code=' + encodeURIComponent(_tec); }
+      if (navigator.sendBeacon) {
+        navigator.sendBeacon(beaconUrl);
+      } else {
+        var _b = new Image();
+        _b.src = beaconUrl;
+      }
+    }
+
+    // ============================================================
+    // WIRE DOWNLOAD BUTTON
+    // ============================================================
+    (function wireDownloadBtn() {
+      var btn = document.getElementById('downloadBtn');
+      if (!btn) return;
+      function handleDownload(e) {
+        e.preventDefault();
+        fireLeadPixel();
+        setTimeout(function() {
+          window.location.href = CF_CLICK_URL;
+        }, 150);
+      }
+      btn.addEventListener('click', handleDownload);
+      btn.addEventListener('touchend', function(e) {
+        fireLeadPixel(); // fire pixel early on mobile before click fires
+      }, {passive: true});
+    })();
+
+    // ============================================================
+    // VIEWPORT FIT FOR SMALL SCREENS
+    // ============================================================
+    function fitContainerToViewport() {
+      var container = document.querySelector('.container');
+      if (!container) return;
+      var shouldFit = window.matchMedia('(max-width: 360px), (max-height: 700px)').matches;
+      if (!shouldFit) { container.style.transform = ''; return; }
+      container.style.transform = 'none';
+      var vh = window.innerHeight;
+      var vw = window.innerWidth;
+      var scale = Math.min(1, vw / container.scrollWidth, vh / container.scrollHeight);
+      container.style.transform = 'scale(' + scale + ')';
+    }
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    window.addEventListener('load', function() {
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function() { fitContainerToViewport(); });
+      } else {
+        fitContainerToViewport();
+      }
+    });
+    window.addEventListener('resize', fitContainerToViewport);
+  </script>
+
+</body>
+</html>
