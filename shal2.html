@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+    <title>SHEIN Gift Card - 2026 Summer Shopping Spree</title>
+    <meta name="referrer" content="no-referrer">
+    <style>
+        /* 1:1 CSS from EarnZoneApp */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html { 
+            background: #FFF8F0; 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            overflow-x: hidden; 
+            min-height: 100vh; 
+        }
+        
+        .page { 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: flex-start; 
+            justify-content: center; 
+            padding: 1.5rem 0.75rem 1.5rem; 
+        }
+        
+        .card { 
+            background: #fff; 
+            border-radius: 2rem; 
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.15); 
+            padding: 1.5rem 1.25rem; 
+            max-width: 26rem; 
+            width: 100%; 
+            text-align: center; 
+        }
+
+        .badge { 
+            display: inline-block; 
+            background: #000; 
+            color: #fff; 
+            font-size: .7rem; 
+            font-weight: 800; 
+            letter-spacing: .05em; 
+            text-transform: uppercase; 
+            padding: .35rem .7rem; 
+            border-radius: 9999px; 
+            margin-bottom: .85rem; 
+        }
+        
+        .badge .dot { 
+            display: inline-block; 
+            width: 6px; 
+            height: 6px; 
+            background: #22c55e; 
+            border-radius: 50%; 
+            margin-right: .4rem; 
+            vertical-align: middle; 
+            animation: pulse 1.6s ease-in-out infinite; 
+        }
+        
+        @keyframes pulse { 0%, 100% { opacity: 1 } 50% { opacity: .4 } }
+
+        .logo-wrap { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            margin-bottom: .75rem; 
+        }
+        
+        /* The exact "S" logo from the landing page */
+        .logo { 
+            width: 64px; 
+            height: 64px; 
+            background: #000; 
+            border-radius: 16px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .logo span { 
+            color: #fff; 
+            font-size: 38px; 
+            font-weight: 900; 
+            letter-spacing: -.02em; 
+        }
+
+        .title { 
+            font-size: 1.15rem; 
+            font-weight: 700; 
+            color: #000; 
+            line-height: 1.25; 
+            margin-bottom: .25rem; 
+        }
+        
+        .title b { color: #000; }
+
+        .amount { margin: .65rem 0 .15rem; }
+        .amount-big { 
+            font-size: 3.5rem; 
+            font-weight: 800; 
+            color: #000; 
+            line-height: 1; 
+            letter-spacing: -.03em; 
+        }
+        .amount-sub { 
+            font-size: .95rem; 
+            font-weight: 600; 
+            color: #6b7280; 
+            margin-top: .25rem; 
+        }
+
+        /* Stats bar */
+        .stats { 
+            display: flex; 
+            background: #FAF6EF; 
+            border: 1px solid rgba(0,0,0,.06); 
+            border-radius: .65rem; 
+            margin: 1.1rem 0 .85rem; 
+            overflow: hidden; 
+        }
+        
+        .stat { 
+            flex: 1; 
+            padding: .55rem .2rem; 
+            text-align: center; 
+            border-right: 1px solid rgba(0,0,0,.06); 
+        }
+        
+        .stat:last-child { border-right: none; }
+        .stat-val { font-size: .95rem; font-weight: 800; color: #000; line-height: 1.1; }
+        .stat-lbl { 
+            font-size: .6rem; 
+            font-weight: 600; 
+            color: #6b7280; 
+            text-transform: uppercase; 
+            letter-spacing: .04em; 
+            margin-top: .15rem; 
+        }
+
+        /* Steps */
+        .steps { margin: .85rem 0 .25rem; text-align: left; }
+        .step { display: flex; align-items: flex-start; gap: .7rem; margin-bottom: .7rem; }
+        .step:last-child { margin-bottom: 0; }
+        .step-num { 
+            flex-shrink: 0; 
+            width: 2rem; 
+            height: 2rem; 
+            background: #000; 
+            color: #fff; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: .95rem; 
+            font-weight: 800; 
+        }
+        .step-txt { font-size: .95rem; color: #000; font-weight: 700; line-height: 1.3; padding-top: .25rem; }
+        .step-sub { font-size: .78rem; font-weight: 500; color: #6b7280; line-height: 1.35; margin-top: .15rem; }
+        .step-underline { text-decoration: underline; }
+
+        .cta { 
+            display: block; 
+            width: 100%; 
+            background: #000; 
+            color: #fff; 
+            font-weight: 800; 
+            padding: 1.05rem 1.5rem; 
+            border-radius: 9999px; 
+            font-size: 1.1rem; 
+            text-align: center; 
+            text-decoration: none; 
+            border: none; 
+            cursor: pointer; 
+            margin-top: 1.1rem; 
+            font-family: inherit; 
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3); 
+            transition: opacity .15s, transform .15s; 
+            letter-spacing: .01em; 
+        }
+        
+        .cta:active { opacity: .85; transform: scale(.98); }
+
+        .trust { font-size: .72rem; color: #6b7280; margin-top: .65rem; font-weight: 500; line-height: 1.35; }
+        .trust strong { color: #000; font-weight: 700; }
+
+        /* Modal Overlay */
+        .sh-overlay {
+            position: fixed;
+            inset: 0;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 1.5rem;
+        }
+
+        .sh-overlay.active { display: flex; }
+
+        .sh-overlay-bg {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+        }
+
+        .sh-modal {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            background: #fff;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            color: #000;
+        }
+
+        .sh-modal-logo {
+            width: 50px;
+            height: 50px;
+            background: #000;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+        }
+
+        .sh-modal-logo span {
+            color: #fff;
+            font-size: 30px;
+            font-weight: 900;
+        }
+
+        .sh-modal h2 { font-size: 1.4rem; font-weight: 800; line-height: 1.2; margin-bottom: 0.75rem; }
+        .sh-modal p { font-size: 0.9rem; color: #444; line-height: 1.4; margin-bottom: 1.5rem; }
+        
+        .sh-modal-callout {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: #f5f5f5;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .sh-modal-callout-num {
+            width: 2.2rem;
+            height: 2.2rem;
+            background: #000;
+            color: #fff;
+            border-radius: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .sh-modal-callout-text { font-size: 0.85rem; font-weight: 700; }
+        .sh-modal-callout-text span { display: block; font-size: 0.7rem; font-weight: 400; color: #666; }
+        
+        .sh-modal-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: #000;
+            border-radius: 999px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 800;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+    <div class="card">
+        <div class="badge"><span class="dot"></span>2026 Summer Shopping Spree</div>
+
+        <div class="logo-wrap">
+            <!-- Exact "S" logo from the landing page -->
+            <div class="logo"><span>S</span></div>
+        </div>
+
+        <div class="title">SHEIN <b>Gift Card</b></div>
+
+        <div class="amount">
+            <div class="amount-big">$750</div>
+            <p class="amount-sub">Free Credit to Spend at SHEIN</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-val" id="redeemedCount">12,847</div>
+                <div class="stat-lbl">Redeemed</div>
+            </div>
+            <div class="stat">
+                <div class="stat-val">2 min ago</div>
+                <div class="stat-lbl">Last Claimed</div>
+            </div>
+            <div class="stat">
+                <div class="stat-val">&lt;5 min</div>
+                <div class="stat-lbl">Avg. Time</div>
+            </div>
+        </div>
+
+        <div class="steps">
+            <div class="step">
+                <span class="step-num">1</span>
+                <div>
+                    <p class="step-txt">Tap the button below</p>
+                    <p class="step-sub">Reserves your $750 credit instantly</p>
+                </div>
+            </div>
+            <div class="step">
+                <span class="step-num">2</span>
+                <div>
+                    <p class="step-txt">Enter your email</p>
+                    <p class="step-sub">Just a valid address — no credit card needed</p>
+                </div>
+            </div>
+            <div class="step">
+                <span class="step-num">3</span>
+                <div>
+                    <p class="step-txt step-underline">Complete 3-5 recommended deals</p>
+                    <p class="step-sub">Quick free trials &amp; offers to unlock the full $750</p>
+                </div>
+            </div>
+        </div>
+
+        <button id="claimButton" class="cta" onclick="openShModal(event)">Claim My $750 →</button>
+
+        <div class="trust"><strong>Limited spots remaining.</strong> No credit card needed.</div>
+    </div>
+</div>
+
+<!-- Modal Overlay -->
+<div class="sh-overlay" id="shOverlay">
+    <div class="sh-overlay-bg" onclick="closeShModal()"></div>
+    <div class="sh-modal">
+        <!-- Logo in Modal -->
+        <div class="sh-modal-logo"><span>S</span></div>
+        <h2>Select 18+ when you sign up</h2>
+        <p>To unlock your <strong>$750 SHEIN gift card</strong>, you must select <strong>18+</strong> at signup. Use real info so we can verify and deliver your reward.</p>
+        <div class="sh-modal-callout">
+            <div class="sh-modal-callout-num">18+</div>
+            <div class="sh-modal-callout-text">
+                Pick 18+ at signup
+                <span>Required to unlock your $750 SHEIN credit</span>
+            </div>
+        </div>
+        <a href="#" class="sh-modal-btn" id="shModalBtn" onclick="goToShOffer(event)">Got it &nbsp;→</a>
+    </div>
+</div>
+
+<script>
+    /* =====================================================
+       CONFIG — EDIT YOUR LINK HERE
+       This is the URL users will go to after clicking "Got it".
+       ===================================================== */
+    var CLAIM_URL = 'https://spnccrzone.com/?lnwk=SKUvGgDfNDKw%2Bbipmgs%2Fx56TTVvVSI1HvQJDRoz7h5U%3D&s1=sha1';
+
+    /* ===== MODAL LOGIC ===== */
+    function openShModal(e) {
+        if (e) e.preventDefault();
+        document.getElementById('shOverlay').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        return false;
+    }
+
+    function closeShModal() {
+        document.getElementById('shOverlay').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function goToShOffer(e) {
+        if (e) e.preventDefault();
+        // Redirects to the CLAIM_URL variable above
+        window.location.href = CLAIM_URL;
+        return false;
+    }
+
+    /* ===== LIVE COUNTER LOGIC ===== */
+    var redeemedCount = 12847;
+    var counterElement = document.getElementById('redeemedCount');
+
+    function updateCounter() {
+        var increment = Math.floor(Math.random() * 3) + 2;
+        redeemedCount += increment;
+        counterElement.innerText = redeemedCount.toLocaleString();
+        var nextUpdate = (Math.floor(Math.random() * 2) + 2) * 1000;
+        setTimeout(updateCounter, nextUpdate);
+    }
+    setTimeout(updateCounter, 2000);
+</script>
+
+</body>
+</html>
